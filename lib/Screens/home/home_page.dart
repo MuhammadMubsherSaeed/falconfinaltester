@@ -63,7 +63,7 @@ class Homescreen extends StatelessWidget {
                       child: Container(
                         height: 160,
                         width: 180,
-                        color: Color.fromARGB(255, 16, 150, 40),
+                        color: Color.fromARGB(255, 121, 135, 101),
                         child: Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: Column(
@@ -114,7 +114,7 @@ class Homescreen extends StatelessWidget {
                       child: Container(
                         height: 160,
                         width: 180,
-                        color: Color.fromARGB(255, 29, 68, 137),
+                        color: Color.fromARGB(255, 92, 108, 136),
                         child: Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: Column(
@@ -167,7 +167,7 @@ class Homescreen extends StatelessWidget {
                       child: Container(
                         height: 160,
                         width: 180,
-                        color: const Color.fromARGB(255, 198, 30, 18),
+                        color: Color.fromARGB(255, 207, 93, 85),
                         child: Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: Column(
@@ -216,7 +216,7 @@ class Homescreen extends StatelessWidget {
                       child: Container(
                         height: 160,
                         width: 180,
-                        color: Color.fromARGB(255, 169, 172, 37),
+                        color: Color.fromARGB(255, 84, 141, 162),
                         child: Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: Column(
@@ -269,7 +269,7 @@ class Homescreen extends StatelessWidget {
                       child: Container(
                         height: 160,
                         width: 180,
-                        color: const Color.fromARGB(255, 40, 99, 42),
+                        color: Color.fromARGB(255, 198, 88, 105),
                         child: Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: Column(
@@ -318,7 +318,7 @@ class Homescreen extends StatelessWidget {
                       child: Container(
                         height: 160,
                         width: 180,
-                        color: Colors.deepPurple,
+                        color: Color.fromARGB(177, 139, 127, 38),
                         child: Padding(
                           padding: const EdgeInsets.only(top: 10),
                           child: Column(

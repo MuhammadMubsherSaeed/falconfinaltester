@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../Custom_widget/falcon_button.dart';
 import '../../Custom_widget/text_feild_palcon.dart';
 import '../../Custom_widget/text_palcon.dart';
-import 'building_altration.dart';
+// import 'building_altration.dart';
 import 'package:http/http.dart' as http;
 
 class Etag extends StatefulWidget {
@@ -15,12 +15,16 @@ class Etag extends StatefulWidget {
   State<Etag> createState() => _EtagState();
 }
 
-var formKey = GlobalKey<FormState>();
+var formkey = GlobalKey<FormState>();
 TextEditingController makec = TextEditingController();
 TextEditingController colorc = TextEditingController();
 TextEditingController regNoc = TextEditingController();
 TextEditingController modelNoc = TextEditingController();
 TextEditingController vehicleTypec = TextEditingController();
+
+final List<int> yearsList =
+    List.generate(30, (index) => DateTime.now().year - 29 + index);
+String? selectedYear = '2023'; // Store the selected year
 
 Future<void> postData(String make, String color, String regno, String modelNo,
     String vehicleType, BuildContext context) async {
@@ -63,7 +67,7 @@ Future<void> checkData() async {
 
 submit(BuildContext context) async {
   if (formkey.currentState!.validate()) {
-    postData(makec.text, colorc.text, regNoc.text, modelNoc.text,
+    postData(makec.text, colorc.text, regNoc.text, selectedYear.toString(),
         vehicleTypec.text, context);
   }
 }
@@ -72,7 +76,7 @@ void clear() async {
   makec.clear();
   colorc.clear();
   regNoc.clear();
-  modelNoc.clear();
+  // selectedYear = null;
   vehicleTypec.clear();
 }
 
@@ -116,16 +120,50 @@ class _EtagState extends State<Etag> {
                       return null;
                     },
                   ),
-                  Textfeildpalcon(
-                    controller: modelNoc,
-                    labeltext: "Model Year",
-                    minlinetxtf: 1,
-                    validate: (v) {
-                      if (v!.isEmpty) {
-                        return "Please Fill The Feild";
-                      }
-                      return null;
-                    },
+                  // Textfeildpalcon(
+                  //   controller: modelNoc,
+                  //   labeltext: "Model Year",
+                  //   minlinetxtf: 1,
+                  //   validate: (v) {
+                  //     if (v!.isEmpty) {
+                  //       return "Please Fill The Feild";
+                  //     }
+                  //     return null;
+                  //   },
+                  // ),
+                  // Year selection dropdown
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: InputDecorator(
+                      decoration: InputDecoration(
+                        labelText: 'Model Year',
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Colors.green, width: 3.0),
+                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(color: Colors.blue, width: 2.0),
+                          borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                        ),
+                      ),
+                      // Your input widget here
+                      child: DropdownButton<String>(
+                        value: selectedYear,
+                        items: yearsList.map((year) {
+                          return DropdownMenuItem<String>(
+                            value: year.toString(),
+                            child: Text(year.toString()),
+                          );
+                        }).toList(),
+                        onChanged: (year) {
+                          setState(() {
+                            selectedYear = year;
+                          });
+                        },
+                      ),
+                    ),
                   ),
                   Textfeildpalcon(
                     controller: makec,

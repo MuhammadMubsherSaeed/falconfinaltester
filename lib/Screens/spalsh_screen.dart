@@ -27,7 +27,7 @@ class _SpalshScreenState extends State<SpalshScreen> {
       body: Container(
         height: MediaQuery.sizeOf(context).height,
         width: MediaQuery.sizeOf(context).width,
-        color: Color.fromARGB(255, 32, 5, 62),
+        color: Color.fromARGB(255, 240, 246, 255),
         child: Center(
           child: Image.asset("Assets/Images/new.png"),
           // Text(

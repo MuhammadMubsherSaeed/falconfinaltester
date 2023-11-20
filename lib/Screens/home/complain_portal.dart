@@ -44,7 +44,9 @@ Future<void> postData(
   if (response.statusCode == 200) {
     Fluttertoast.showToast(msg: "Sent Successfully");
   } else {
-    Fluttertoast.showToast(msg: "Connection Error");
+    //
+    print("Error: ${response.statusCode} - ${response.body}");
+    Fluttertoast.showToast(msg: "Connection Error: ${response.statusCode}");
   }
 }
 
@@ -188,7 +190,6 @@ class _ComplainportalState extends State<Complainportal> {
     );
   }
 }
-
 
 // Future<void> postData() async {
 //   final prefs = await SharedPreferences.getInstance();
