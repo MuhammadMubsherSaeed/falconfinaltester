@@ -90,7 +90,7 @@ class _DuesandBillPortalState extends State<DuesandBillPortal>
                       child: TabBarView(
                         controller: tabController,
                         children: [
-                          GenrateBill(),
+                          GenerateBill(),
                           BillHistory(),
                         ],
                       ),

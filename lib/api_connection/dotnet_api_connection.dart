@@ -1,5 +1,5 @@
 class APIs {
-  static const hostconnectivity = 'http://182.191.69.176:8060/api/Tenant';
+  static const hostconnectivity = 'http://182.180.146.190:8060/api/Tenant';
   static const signin =
       '$hostconnectivity/SignIn?Email={email}&Password={password}';
   static const signup =
@@ -16,6 +16,9 @@ class APIs {
       '$hostconnectivity/PetRegistration?HouseId={houseId}&PetKind={petkind}&Vaccinated_Due={vaccinationvalidtill}&Vaccinated={vaccinationname}';
   static const billhistory =
       '$hostconnectivity/GetBillsByHouseId?Houseid={houseid}';
+  static const generatebill =
+      '$hostconnectivity/GetMonthlyBillByID?HouseId={houseid}&DateTime={date}';
+
   static const residentdet = '$hostconnectivity/GenerateGatePass';
   static const servantdet = '$hostconnectivity/GenerateGatePass';
   static const visitordet = '$hostconnectivity/GenerateGatePass';

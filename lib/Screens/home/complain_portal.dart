@@ -38,6 +38,7 @@ Future<void> postData(
       );
     },
   );
+
   final response = await http.post(Uri.parse(url), body: url.toString());
   print(response.statusCode);
   Navigator.pop(context);
@@ -53,7 +54,7 @@ Future<void> postData(
 Future<void> checkData() async {
   final per = await SharedPreferences.getInstance();
   final houseid = per.get('houseId');
-  print('thi is houseid $houseid');
+  print('this is houseid $houseid');
 }
 
 var formKey = GlobalKey<FormState>();

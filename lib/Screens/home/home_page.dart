@@ -35,6 +35,84 @@ class Homescreen extends StatelessWidget {
                 title: Text('Logout'),
                 onTap: () => handleLogout(context),
               ),
+              SizedBox(
+                height: 10,
+              ),
+              // ListTile(
+              //   leading: Icon(Icons.delete_forever),
+              //   title: Text('Remove Account'),
+              //   onTap: () => handleLogout(context),
+              // ),
+              ListTile(
+                leading: Icon(Icons.delete_forever),
+                title: Text('Remove Account'),
+                onTap: () {
+                  // Show a confirmation dialog to confirm account disable
+                  showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('Remove Account'),
+                        content: Text(
+                            'Are you sure you want to remove your account?'),
+                        actions: <Widget>[
+                          TextButton(
+                            child: Text('Cancel'),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                          // TextButton(
+                          //   child: Text('Disable'),
+                          //   onPressed: () {
+                          //     // Add the code to disable the account here
+                          //     // This could involve updating user account status or data
+                          //     // and logging the user out or handling account inactivity
+                          //     // Be sure to implement the logic according to your specific needs.
+
+                          //     // After disabling the account, you can log the user out
+                          //     handleLogout(context);
+                          //   },
+                          // ),
+                          TextButton(
+                            child: Text('Disable'),
+                            onPressed: () async {
+                              // Add the code to delete the user's account from the database here
+                              bool deleted =
+                                  await deleteUserAccount(); // Replace with your own function
+
+                              if (deleted) {
+                                // If the account is successfully deleted, log the user out
+                                handleLogout(context);
+                              } else {
+                                // Handle the case where the account deletion failed
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return AlertDialog(
+                                      title: Text('Account Deletion Failed'),
+                                      content: Text(
+                                          'Unable to delete your account at the moment. Please try again later.'),
+                                      actions: <Widget>[
+                                        TextButton(
+                                          child: Text('OK'),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                );
+                              }
+                            },
+                          )
+                        ],
+                      );
+                    },
+                  );
+                },
+              ),
             ],
           ),
         ),
@@ -362,4 +440,6 @@ class Homescreen extends StatelessWidget {
       ),
     );
   }
+
+  deleteUserAccount() {}
 }
