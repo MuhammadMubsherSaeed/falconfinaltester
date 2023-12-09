@@ -39,7 +39,6 @@ class _GenerateBillState extends State<GenerateBill> {
     try {
       final prefs = await SharedPreferences.getInstance();
       final houseId = prefs.getInt('houseId');
-      // final stringhouseid = houseId.toString();
       final response = await http.get(
         Uri.parse(
           'http://182.180.146.190:8060/api/Tenant/GetMonthlyBillByID?HouseId=$houseId&DateTime=${DateFormat('yyyy-MM-dd').format(selectedDate)}',
@@ -65,7 +64,6 @@ class _GenerateBillState extends State<GenerateBill> {
         final file = File('${tempDir.path}/generated_bill.pdf');
         await file.writeAsBytes(pdfBytes!);
 
-        // Display a snackbar to indicate the download
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text('PDF downloaded to local storage'),
@@ -83,40 +81,43 @@ class _GenerateBillState extends State<GenerateBill> {
       appBar: AppBar(
         title: Text('Generate Bill'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          SizedBox(height: 20),
-          Text(
-            'Selected Date: ${DateFormat('yyyy-MM-dd').format(selectedDate)}',
-            style: TextStyle(fontSize: 20),
-          ),
-          SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () => _selectDate(context),
-            child: Text('Select Month'),
-          ),
-          SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () async {
-              await _generateAndDisplayBill(selectedDate);
-            },
-            child: Text('Generate Bill'),
-          ),
-          SizedBox(height: 20),
-          ElevatedButton(
-            onPressed: () => _downloadPDF(),
-            child: Text('Download PDF'),
-          ),
-          SizedBox(height: 20),
-          Expanded(
-            child: Container(
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            const SizedBox(height: 20),
+            Text(
+              'Selected Date: ${DateFormat('yyyy-MM-dd').format(selectedDate)}',
+              style: TextStyle(fontSize: 20),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () => _selectDate(context),
+              child: Text('Select Month'),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () async {
+                await _generateAndDisplayBill(selectedDate);
+              },
+              child: Text('Generate Bill'),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () => _downloadPDF(),
+              child: Text('Download PDF'),
+            ),
+            const SizedBox(height: 20),
+            Container(
+              height: MediaQuery.of(context).size.height *
+                  0.7, // Adjust the height as needed
+              width: MediaQuery.of(context).size.width * 0.9,
               child: pdfBytes != null
                   ? PDFView(
                       pdfData: pdfBytes!,
-                      autoSpacing: false,
-                      pageFling: false,
+                      autoSpacing: true,
+                      pageFling: true,
                       pageSnap: true,
                       fitPolicy: FitPolicy.BOTH,
                     )
@@ -127,22 +128,11 @@ class _GenerateBillState extends State<GenerateBill> {
                       ),
                     ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
-}
-
-
-
-
-
-
-
-
-
-
 
 // import 'package:flutter/material.dart';
 // import 'package:intl/intl.dart';
@@ -276,3 +266,4 @@ class _GenerateBillState extends State<GenerateBill> {
 //   }
 // }
 //}
+}

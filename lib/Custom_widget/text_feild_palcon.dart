@@ -14,6 +14,9 @@ class Textfeildpalcon extends StatelessWidget {
     this.icons,
     this.onpress,
     this.ispassword = false,
+    this.obscureText = false, // Add this line with a default value
+    this.suffixIcon,
+    // Add this line
   });
   final TextEditingController? controller;
 
@@ -26,6 +29,8 @@ class Textfeildpalcon extends StatelessWidget {
   final String? Function(String?)? validate;
   final VoidCallback? onpress;
   final IconData? icons;
+  final bool obscureText; // Add this line
+  final Widget? suffixIcon;
 
   final bool ispassword;
 

@@ -18,6 +18,8 @@ class APIs {
       '$hostconnectivity/GetBillsByHouseId?Houseid={houseid}';
   static const generatebill =
       '$hostconnectivity/GetMonthlyBillByID?HouseId={houseid}&DateTime={date}';
+  static const emoveaccount =
+      '$hostconnectivity/RemoveAccount?Email={email}&Password={password}';
 
   static const residentdet = '$hostconnectivity/GenerateGatePass';
   static const servantdet = '$hostconnectivity/GenerateGatePass';

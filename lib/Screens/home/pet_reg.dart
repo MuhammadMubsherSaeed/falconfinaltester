@@ -161,23 +161,139 @@
 //   }
 // }
 
+// import 'package:flutter/material.dart';
+
+// class Petreg extends StatelessWidget {
+//   const Petreg({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: Center(
+//         child: Text(
+//           "Under Processing...",
+//           style: TextStyle(
+//             fontSize: 36,
+//             fontWeight: FontWeight.bold,
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+// }
+
 import 'package:flutter/material.dart';
+import 'package:falconfinaltester/Screens/home/building_altration.dart';
+import 'package:falconfinaltester/Screens/home/complain_portal.dart';
+import 'package:falconfinaltester/Screens/home/dues/duesportal.dart';
+import 'package:falconfinaltester/Screens/home/e_tag.dart';
+import 'package:falconfinaltester/Screens/home/home_page.dart';
+import 'package:falconfinaltester/Screens/home/visitorcard/visitor_card.dart';
 
 class Petreg extends StatelessWidget {
-  const Petreg({super.key});
+  const Petreg({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Pet Registration'),
+        centerTitle: true,
+      ),
       body: Center(
         child: Text(
-          "Under Pocessing...",
+          "Under Processing...",
           style: TextStyle(
             fontSize: 36,
             fontWeight: FontWeight.bold,
           ),
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color.fromARGB(255, 71, 156, 240),
+        unselectedItemColor: Colors.grey,
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.comment),
+            label: 'Complaints',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.money_outlined),
+            label: 'Dues & Fines',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.car_crash_sharp),
+            label: 'E-TAG Registration',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.door_back_door_outlined),
+            label: 'Card Issuance',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.pets),
+            label: 'Pets Registration',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.house_rounded),
+            label: 'Building Alterations',
+          ),
+        ],
+        currentIndex: 5, // Set the index for Pets Registration
+        selectedItemColor: Color.fromARGB(255, 11, 162, 34),
+        onTap: (index) => _onItemTapped(context, index),
+      ),
     );
+  }
+
+  void _onItemTapped(BuildContext context, int index) {
+    // Handle navigation based on the index (0, 1, 2, etc.)
+    switch (index) {
+      case 0:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => Homescreen()),
+        );
+        break;
+      case 1:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => Complainportal()),
+        );
+        break;
+      case 2:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => DuesandBillPortal()),
+        );
+        break;
+      case 3:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => Etag()),
+        );
+        break;
+      case 4:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => VisitorCard()),
+        );
+        break;
+      case 5:
+        // The current screen (Pets Registration) is already selected
+        break;
+      case 6:
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (_) => Buildingalteration()),
+        );
+        break;
+      case 7:
+        // Handle navigation for Dues and Fine Portal
+        break;
+    }
   }
 }
